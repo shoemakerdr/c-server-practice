@@ -1,15 +1,5 @@
-# Simple Server in C
+# Practice Repo for C Server Implementation
 
-Created a simple client/server in C.
+This repository is for learning and practicing various implementations of C/C++ socket programming.
 
-Usage:
-
-Terminal 1:
-
-    $ gcc -o server server.c
-    $ ./server
-
-Terminal 2:
-
-    $ gcc -o client client.c
-    $ ./client localhost
+My goal is to gain a deeper understanding of network programming as well as C and C++.
