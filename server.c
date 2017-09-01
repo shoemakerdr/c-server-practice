@@ -12,7 +12,7 @@ int main ()
     struct sockaddr_in server;
     int mysock;
     char buff[1024];
-    int rval;
+    int received;
 
 
 
@@ -54,11 +54,11 @@ int main ()
         else
         {
             memset(buff, 0, sizeof(buff));
-            if ((rval = recv(mysock, buff, sizeof(buff),0)) < 0)
+            if ((received = recv(mysock, buff, sizeof(buff),0)) < 0)
             {
                 perror("reading stream message error");
             }
-            else if (rval == 0) 
+            else if (received == 0) 
             {
                 printf("Ending connection\n");
             }
@@ -67,7 +67,7 @@ int main ()
                 printf("MSG: %s\n", buff);
             }
 
-            printf("Got the message (rval = %d)\n", rval);
+            printf("Got the message (received = %d)\n", received);
         }
     } while (1);
 
