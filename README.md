@@ -3,6 +3,7 @@
 Created a simple client/server in C.
 
 Usage:
+
     $ gcc -o server server.c
     $ ./server
 
