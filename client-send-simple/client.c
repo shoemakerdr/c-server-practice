@@ -15,6 +15,12 @@ int main(int argc, char *argv[])
     struct sockaddr_in server;
     struct hostent *hp;
 
+    if (argc < 2)
+    {
+        perror("You must specify the host address as argument\nFor example:\n\t\"./client localhost\"\n");
+        exit(1);
+    }
+
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0)
     {
