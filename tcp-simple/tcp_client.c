@@ -42,7 +42,9 @@ int main () {
     server_address.sin_addr.s_addr = INADDR_ANY;
 
     /* Call connect with server address information
-     *
+     * 
+     * connect returns an integer-- anything other than 0 is an error
+     * 
      * connect(int socket, struct sockaddr * address_of_server, int size)
      *
      * Network_socket is the socket were connecting from
@@ -55,9 +57,35 @@ int main () {
      * The third argument is just the size of the server address struct.
      *
      */
-    connect(network_socket, (struct sockaddr *) &server_address, sizeof(server_address));
+    int connection_status = connect(network_socket,
+            (struct sockaddr *) &server_address,
+            sizeof(server_address));
 
-    // 17:51
+    if (connection_status == -1) {
+        printf("There was an error making a connection to the remote socket \n\n");
+    }
+
+    /* Receive data from the socket
+     *
+     * recv(int socket, char * response_buffer, int size_of_response_buffer, int flag)
+     *
+     * response buffer is the address of a buffer to hold the response from the server
+     *
+     * the flag is usually set to 0
+     * 
+     */
+    char server_response[256];
+
+    recv(network_socket, &server_response, sizeof(server_response), 0);
+
+
+    // print out response from the server
+    
+    printf("The server sent the data: %s\n\n", server_response);
+
+    // close socket
+    close(network_socket);
+
 
     return 0;
 }
